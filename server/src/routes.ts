@@ -60,21 +60,21 @@ export async function appRoutes(app: FastifyInstance){
         }
     })
 
-      const day = await prisma.day.findUnique({
-         where: {
-          date: parsedDate.toDate(),
-         },
-         include: {
-             dayHabits: true
-         }
-      })
+       const day = await prisma.day.findUnique({
+          where: {
+           date: parsedDate.toDate(),
+          },
+          include: {
+              dayHabits: true
+          }
+       })
 
-      const completeHabits = day?.dayHabits.map(dayHabit=>{
-        return dayHabit.habit_id
-      })
+       const completeHabits = day?.dayHabits.map(dayHabit=>{
+         return dayHabit.habit_id
+       })
       return {
         possibleHabits,
-        completeHabits
+        completeHabits,
         
       }
     })
